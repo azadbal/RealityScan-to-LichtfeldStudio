@@ -23,4 +23,13 @@ RESIZE=auto
 TILE_MODE=1
 MAX_WIDTH=3840
 LOG_LEVEL=info
+
+# ------ OPTIONAL FLAGS (0=off, 1=on) ------
+# These are appended to the CLI command when enabled.
+ENABLE_BILATERAL_GRID=1
+ENABLE_MIP_MAP=0
+ENABLE_HEADLESS=0
+
+# Any extra CLI flags to pass verbatim (advanced).
+# Examples: --seed 1234 --lr 0.001 --resume --log-level debug --device cuda
 EXTRA_FLAGS=

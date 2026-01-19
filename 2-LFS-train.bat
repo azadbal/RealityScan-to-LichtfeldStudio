@@ -41,6 +41,12 @@ set "TILE_MODE=%TILE_MODE%"
 set "MAX_WIDTH=%MAX_WIDTH%"
 set "LOG_LEVEL=%LOG_LEVEL%"
 
+REM ----- Optional toggles -----
+set "OPTIONAL_FLAGS="
+if /I "%ENABLE_BILATERAL_GRID%"=="1" set "OPTIONAL_FLAGS=%OPTIONAL_FLAGS% --bilateral-grid"
+if /I "%ENABLE_MIP_MAP%"=="1" set "OPTIONAL_FLAGS=%OPTIONAL_FLAGS% --mip-map"
+if /I "%ENABLE_HEADLESS%"=="1" set "OPTIONAL_FLAGS=%OPTIONAL_FLAGS% --headless"
+
 REM ----- Extra flags (edit freely) -----
 set "EXTRA_FLAGS=%EXTRA_FLAGS%"
 
@@ -76,7 +82,6 @@ REM ============================================================
   --data-path "%INPUT_DIR%" ^
   --output-path "%OUTPUT_DIR%" ^
   --train ^
-  --bilateral-grid ^
   --iter %ITER% ^
   --strategy %STRATEGY% ^
   --sh-degree %SH_DEGREE% ^
@@ -84,6 +89,7 @@ REM ============================================================
   --tile-mode %TILE_MODE% ^
   --max-width %MAX_WIDTH% ^
   --log-level %LOG_LEVEL% ^
+  %OPTIONAL_FLAGS% ^
   %EXTRA_FLAGS%
 
 endlocal
