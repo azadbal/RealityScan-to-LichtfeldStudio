@@ -1,0 +1,3 @@
+-selectAllImages
+-exportRegistration "X:\FILES\RC\RC_CLI\RCCOMMANDS\LichtfieldStudio\RCCMD\images_and_poses\colmap.txt" "X:\FILES\RC\RC_CLI\RCCOMMANDS\LichtfieldStudio\RCCMD\colmap-rs-exportsettings.xml"
+

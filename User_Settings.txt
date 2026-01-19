@@ -1,0 +1,26 @@
+# User-configurable settings for the pipeline.
+# Format: KEY=value (no quotes). Lines starting with # or ; are ignored.
+
+# ------ PATHS ------
+REALITYSCAN_EXE=C:\Program Files\Epic Games\RealityScan_2.0\RealityScan.exe
+LFS_EXE=C:\Users\Azad\Documents\_apps\Lichtfield Studio\bin\LichtFeld-Studio.exe
+SETTINGS_DIR=%SCRIPT_DIR%\Settings
+
+# Project root folders
+IMAGE_DIR=%ROOT%\images
+RS_DIR=%ROOT%\RS
+LFS_INPUT_DIR=%ROOT%\LichtfieldStudio_Input
+LFS_OUTPUT_DIR=%ROOT%\LichtfieldStudio_Output
+
+# Project name (defaults to root folder name)
+PROJECT_NAME=%ROOT_NAME%
+
+# ------ TRAINING PARAMS ------
+ITER=15000
+STRATEGY=mcmc
+SH_DEGREE=3
+RESIZE=auto
+TILE_MODE=1
+MAX_WIDTH=3840
+LOG_LEVEL=info
+EXTRA_FLAGS=
