@@ -3,7 +3,7 @@ setlocal ENABLEDELAYEDEXPANSION
 
 REM ============================================================
 REM LichtFeld Studio – CLI Splat Training
-REM Input  : ./LichtfieldStudio_Input   (next to this .bat)
+REM Input  : ./colmap   (next to this .bat)
 REM Output : ./LichtfieldStudio_Output  (auto-created)
 REM ============================================================
 
@@ -19,9 +19,16 @@ if not exist "%SETTINGS_FILE%" (
   echo ERROR: Missing User_Settings.txt
   exit /b 1
 )
-for /f "usebackq tokens=1* delims==" %%A in ("%SETTINGS_FILE%") do (
-  if not "%%A"=="" if not "%%A:~0,1%"=="#" if not "%%A:~0,1%"==";" (
-    call set "%%A=%%B"
+for /f "usebackq delims=" %%L in ("%SETTINGS_FILE%") do (
+  set "LINE=%%L"
+  if not "!LINE!"=="" if not "!LINE:~0,1!"=="#" if not "!LINE:~0,1!"==";" (
+    if "!LINE!"=="!LINE:=!" (
+      call set "%%L=1"
+    ) else (
+      for /f "tokens=1* delims==" %%A in ("!LINE!") do (
+        call set "%%A=%%B"
+      )
+    )
   )
 )
 
@@ -40,12 +47,19 @@ set "RESIZE=%RESIZE%"
 set "TILE_MODE=%TILE_MODE%"
 set "MAX_WIDTH=%MAX_WIDTH%"
 set "LOG_LEVEL=%LOG_LEVEL%"
+set "RESIZE_ARG="
+if /i "%RESIZE%"=="auto" set "RESIZE_ARG=--resize_factor=auto"
+if /i not "%RESIZE%"=="auto" if not "%RESIZE%"=="" set "RESIZE_ARG=--resize_factor=%RESIZE%"
 
-REM ----- Optional toggles -----
+REM ----- Optional flags -----
+set "BILATERAL_GRID=%BILATERAL_GRID%"
+set "ENABLE_MIP=%ENABLE_MIP%"
+set "HEADLESS=%HEADLESS%"
+
 set "OPTIONAL_FLAGS="
-if /I "%ENABLE_BILATERAL_GRID%"=="1" set "OPTIONAL_FLAGS=%OPTIONAL_FLAGS% --bilateral-grid"
-if /I "%ENABLE_MIP_MAP%"=="1" set "OPTIONAL_FLAGS=%OPTIONAL_FLAGS% --mip-map"
-if /I "%ENABLE_HEADLESS%"=="1" set "OPTIONAL_FLAGS=%OPTIONAL_FLAGS% --headless"
+if "%BILATERAL_GRID%"=="1" set "OPTIONAL_FLAGS=%OPTIONAL_FLAGS% --bilateral-grid"
+if "%ENABLE_MIP%"=="1" set "OPTIONAL_FLAGS=%OPTIONAL_FLAGS% --enable-mip"
+if "%HEADLESS%"=="1" set "OPTIONAL_FLAGS=%OPTIONAL_FLAGS% --headless"
 
 REM ----- Extra flags (edit freely) -----
 set "EXTRA_FLAGS=%EXTRA_FLAGS%"
@@ -82,14 +96,14 @@ REM ============================================================
   --data-path "%INPUT_DIR%" ^
   --output-path "%OUTPUT_DIR%" ^
   --train ^
-  --iter %ITER% ^
-  --strategy %STRATEGY% ^
-  --sh-degree %SH_DEGREE% ^
-  --resize_factor %RESIZE% ^
-  --tile-mode %TILE_MODE% ^
-  --max-width %MAX_WIDTH% ^
-  --log-level %LOG_LEVEL% ^
   %OPTIONAL_FLAGS% ^
+  --iter %ITER% ^
+  --strategy=%STRATEGY% ^
+  --sh-degree=%SH_DEGREE% ^
+  %RESIZE_ARG% ^
+  --tile-mode=%TILE_MODE% ^
+  --max-width=%MAX_WIDTH% ^
+  --log-level=%LOG_LEVEL% ^
   %EXTRA_FLAGS%
 
 endlocal

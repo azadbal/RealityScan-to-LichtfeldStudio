@@ -1,15 +1,16 @@
 # User-configurable settings for the pipeline.
 # Format: KEY=value (no quotes). Lines starting with # or ; are ignored.
+# For boolean flags, you can use a bare KEY to enable it.
 
 # ------ PATHS ------
 REALITYSCAN_EXE=C:\Program Files\Epic Games\RealityScan_2.0\RealityScan.exe
-LFS_EXE=C:\Users\Azad\Documents\_apps\Lichtfield Studio\bin\LichtFeld-Studio.exe
+LFS_EXE=[INSERT DIR]\Lichtfield Studio\bin\LichtFeld-Studio.exe
 SETTINGS_DIR=%SCRIPT_DIR%\Settings
 
 # Project root folders
 IMAGE_DIR=%ROOT%\images
 RS_DIR=%ROOT%\RS
-LFS_INPUT_DIR=%ROOT%\LichtfieldStudio_Input
+LFS_INPUT_DIR=%ROOT%\colmap
 LFS_OUTPUT_DIR=%ROOT%\LichtfieldStudio_Output
 
 # Project name (defaults to root folder name)
@@ -24,11 +25,11 @@ TILE_MODE=1
 MAX_WIDTH=3840
 LOG_LEVEL=info
 
-# ------ OPTIONAL FLAGS (0=off, 1=on) ------
-# These are appended to the CLI command when enabled.
-ENABLE_BILATERAL_GRID=1
-ENABLE_MIP_MAP=0
-ENABLE_HEADLESS=0
+# ------ OPTIONAL FLAGS ------
+BILATERAL_GRID
+# ENABLE_MIP enables mip filter (anti-aliasing) during training.
+#ENABLE_MIP
+#HEADLESS
 
 # Any extra CLI flags to pass verbatim (advanced).
 # Examples: --seed 1234 --lr 0.001 --resume --log-level debug --device cuda
