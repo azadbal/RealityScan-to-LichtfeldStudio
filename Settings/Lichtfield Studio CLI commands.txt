@@ -1,0 +1,94 @@
+Microsoft Windows [Version 10.0.26100.7623]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Azad\Documents\_apps\Lichtfield Studio\bin>LichtFeld-Studio.exe --help
+  LichtFeld-Studio.exe {OPTIONS}
+
+    LichtFeld Studio: High-performance CUDA implementation of 3D Gaussian
+    Splatting algorithm.
+
+  OPTIONS:
+
+      -h, --help                        Display help menu
+      -v[path], --view=[path]           View splat file(s). Supports .ply, .sog,
+                                        .resume. If directory, loads all.
+      --resume=[checkpoint]             Resume training from checkpoint file
+      -d[data_path],
+      --data-path=[data_path]           Path to training data
+      -o[output_path],
+      --output-path=[output_path]       Path to output
+      --config=[config_file]            LichtFeldStudio config file (json)
+      -i[iterations],
+      --iter=[iterations]               Number of iterations
+      --max-cap=[max_cap]               Max Gaussians for MCMC
+      --images=[images]                 Images folder name
+      --test-every=[test_every]         Use every Nth image as test
+      --steps-scaler=[steps_scaler]     Scale training steps by factor
+      --sh-degree-interval=[sh_degree_interval]
+                                        SH degree interval
+      --sh-degree=[sh_degree]           Max SH degree [0-3]
+      --min-opacity=[min_opacity]       Minimum opacity threshold
+      --strategy=[strategy]             Optimization strategy: mcmc, adc
+      --init-num-pts=[init_num_pts]     Number of random initialization points
+      --init-extent=[init_extent]       Extent of random initialization
+      --timelapse-images=[timelapse_images...]
+                                        Image filenames to render timelapse
+                                        images for
+      --timelapse-every=[timelapse_every]
+                                        Render timelapse image every N
+                                        iterations (default: 50)
+      --init=[path]                     Initialize from splat file (.ply, .sog,
+                                        .spz, .resume)
+      --tile-mode=[tile_mode]           Tile mode for memory-efficient training:
+                                        1=1 tile, 2=2 tiles, 4=4 tiles (default:
+                                        1)
+      --sparsify-steps=[sparsify_steps] Number of steps for sparsification
+                                        (default: 15000)
+      --init-rho=[init_rho]             Initial ADMM penalty parameter (default:
+                                        0.0005)
+      --prune-ratio=[prune_ratio]       Final pruning ratio for sparsity
+                                        (default: 0.6)
+      --log-level=[level]               Log level: trace, debug, info, perf,
+                                        warn, error, critical, off (default:
+                                        info)
+      --log-file=[file]                 Optional log file path
+      --log-filter=[pattern]            Filter log messages (glob: *foo*, regex:
+                                        \\d+)
+      --enable-mip                      Enable mip filter (anti-aliasing)
+      --bilateral-grid                  Enable bilateral grid filtering
+      --eval                            Enable evaluation during training
+      --headless                        Disable visualization during training
+      --train                           Start training immediately on startup
+      --no-splash                       Skip splash screen on startup
+      --no-interop                      Disable CUDA-GL interop (use CPU
+                                        fallback for display)
+      --save-eval-images                Save eval images and depth maps
+      --save-depth                      Save depth maps during training
+      --bg-modulation                   Enable sinusoidal background modulation
+                                        mixed with base background
+      --random                          Use random initialization instead of SfM
+      --gut                             Enable GUT mode
+      --enable-sparsity                 Enable sparsity optimization
+      --mask-mode=[mask_mode]           Mask mode: none, segment, ignore,
+                                        alpha_consistent (default: none)
+      --invert-masks                    Invert mask values (swap
+                                        object/background)
+      -r[resize_factor],
+      --resize_factor=[resize_factor]   resize resolution by this factor.
+                                        Options: auto, 1, 2, 4, 8 (default:
+                                        auto)
+      --max-width=[max_width]           Max width of images in px (default:
+                                        3840)
+      --use_cpu_cache=[use_cpu_cache]   if true - try using cpu memory to cache
+                                        images (default: true)
+      --use_fs_cache=[use_fs_cache]     if true - try using temporary file
+                                        system to cache images (default: true)
+
+    Usage:
+      Training: LichtFeld-Studio --data-path <path> --output-path <path>
+    [options]
+      Resume: LichtFeld-Studio --resume <checkpoint.resume> [options]
+      Viewing: LichtFeld-Studio --view <file_or_directory> [options]
+
+C:\Users\Azad\Documents\_apps\Lichtfield Studio\bin>
+
